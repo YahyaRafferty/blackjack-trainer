@@ -1,6 +1,6 @@
 # Blackjack Trainer
 
-## Built for Card Counting & Quantitative Finance II
+## Card Counting & Quantitative Finance II
 
 A little browser game to practice basic strategy and card counting (Hi-Lo).
 
