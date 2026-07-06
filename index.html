@@ -22,6 +22,34 @@
     --text-on-paper-dim:#5a6b85;
     --good:#2e8b46;
     --bad:#b33b30;
+
+    /* Table theme (color picker overrides these) */
+    --table-deep:#081a33;
+    --table-mid:#123a70;
+    --table-light:#2058a8;
+    --table-accent:#2f6fd1;
+    --table-accent-soft:#a9c6ee;
+  }
+  body[data-table-theme="green"]{
+    --table-deep:#052a20;
+    --table-mid:#0c3d2c;
+    --table-light:#175c3f;
+    --table-accent:#c9a445;
+    --table-accent-soft:#e8d9a8;
+  }
+  body[data-table-theme="burgundy"]{
+    --table-deep:#2a0a12;
+    --table-mid:#5c1626;
+    --table-light:#8c2438;
+    --table-accent:#d4a24c;
+    --table-accent-soft:#f0cfa0;
+  }
+  body[data-table-theme="charcoal"]{
+    --table-deep:#0a0a0a;
+    --table-mid:#1c1c1c;
+    --table-light:#3a3a3a;
+    --table-accent:#c9a445;
+    --table-accent-soft:#f0dba3;
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -32,7 +60,7 @@
     font-family:"Times New Roman", Times, serif;
     padding:18px;
   }
-  .wrap{max-width:940px;margin:0 auto;position:relative;}
+  .wrap{max-width:1180px;margin:0 auto;position:relative;}
 
   .brand-main{
     font-size:0.7rem;
@@ -59,7 +87,7 @@
     background:var(--paper-dim);
     border:1px solid var(--navy);
     color:var(--navy);
-    border-radius:8px;
+    border-radius:2px;
     width:38px;height:38px;
     font-size:1.1rem;
     cursor:pointer;
@@ -74,10 +102,10 @@
     right:0;
     width:270px;
     background:var(--paper);
-    border:1px solid var(--navy);
-    border-radius:10px;
+    border:2px double var(--navy);
+    border-radius:2px;
     padding:14px;
-    box-shadow:0 12px 24px rgba(13,27,50,0.18);
+    box-shadow:0 8px 16px rgba(13,27,50,0.15);
     display:none;
     z-index:10;
   }
@@ -109,13 +137,13 @@
     background:var(--paper-dim);
     color:var(--text-on-paper);
     border:1px solid var(--navy);
-    border-radius:6px;
+    border-radius:2px;
     padding:6px 10px;
     cursor:pointer;
   }
   select:disabled, .segbtn:disabled, .newshoe-btn:disabled{opacity:0.4;cursor:not-allowed;}
 
-  .segmented{display:flex;border:1px solid var(--navy);border-radius:6px;overflow:hidden;}
+  .segmented{display:flex;border:1px solid var(--navy);border-radius:2px;overflow:hidden;}
   .segbtn{border:none;border-radius:0;background:transparent;flex:1;}
   .segbtn.active{background:var(--navy);color:#fff;font-weight:700;}
 
@@ -131,7 +159,7 @@
   .stat{
     background:var(--paper);
     border:2px solid var(--navy);
-    border-radius:8px;
+    border-radius:2px;
     padding:6px 14px;
     text-align:center;
     min-width:100px;
@@ -195,43 +223,42 @@
   .table{
     flex:1;
     min-width:0;
-    background:radial-gradient(ellipse at 50% 0%, var(--navy-light), var(--navy) 70%);
-    border:6px solid var(--paper);
-    outline:1px solid var(--navy);
-    border-radius:22px;
-    padding:20px;
-    box-shadow:0 10px 24px rgba(13,27,50,0.25), inset 0 0 60px rgba(0,0,0,0.25);
+    background:radial-gradient(ellipse at 50% 0%, var(--table-light), var(--table-mid) 70%);
+    border:4px double var(--table-accent);
+    border-radius:2px;
+    padding:26px;
+    box-shadow:0 6px 14px rgba(13,27,50,0.2);
   }
 
-  .zone{margin-bottom:10px;}
+  .zone{margin-bottom:12px;}
   .zone-label{
-    font-size:0.7rem;
+    font-size:0.76rem;
     text-transform:uppercase;
     letter-spacing:0.12em;
-    color:var(--accent-soft);
-    margin-bottom:6px;
+    color:var(--table-accent-soft);
+    margin-bottom:8px;
     display:flex;
     justify-content:space-between;
   }
-  .cards-row{display:flex;gap:8px;min-height:88px;align-items:center;justify-content:center;flex-wrap:wrap;}
+  .cards-row{display:flex;gap:10px;min-height:104px;align-items:center;justify-content:center;flex-wrap:wrap;}
   .hand-group{
     display:flex;
-    gap:6px;
+    gap:8px;
     padding:6px;
-    border-radius:10px;
-    border:2px solid transparent;
+    border-radius:2px;
+    border:1px solid transparent;
   }
-  .hand-group.active{border-color:var(--accent-soft);background:rgba(255,255,255,0.08);}
-  .hand-total{font-size:0.75rem;color:var(--text-on-navy-dim);margin-left:6px;}
+  .hand-group.active{border-color:var(--table-accent-soft);background:rgba(255,255,255,0.08);}
+  .hand-total{font-size:0.8rem;color:var(--text-on-navy-dim);margin-left:6px;}
 
   .card{
-    width:52px;height:74px;
+    width:62px;height:88px;
     background:var(--card-bg);
-    border-radius:6px;
+    border-radius:4px;
     position:relative;
     box-shadow:0 3px 6px rgba(0,0,0,0.4);
     display:flex;flex-direction:column;justify-content:space-between;
-    padding:4px 5px;
+    padding:5px 6px;
     font-family:"Times New Roman",Times,serif;
     font-weight:700;
     animation:deal 0.22s ease-out;
@@ -243,40 +270,40 @@
   }
   .card.red{color:var(--red);}
   .card.black{color:var(--ink);}
-  .card .rank{font-size:0.95rem;line-height:1;}
-  .card .suit-center{font-size:1.5rem;align-self:center;}
+  .card .rank{font-size:1.1rem;line-height:1;}
+  .card .suit-center{font-size:1.75rem;align-self:center;}
   .card.back{
-    background:repeating-linear-gradient(45deg, var(--navy-light), var(--navy-light) 5px, var(--navy-deep) 5px, var(--navy-deep) 10px);
+    background:repeating-linear-gradient(45deg, var(--table-light), var(--table-light) 5px, var(--table-deep) 5px, var(--table-deep) 10px);
     border:2px solid var(--paper);
   }
 
   .message-bar{
     text-align:center;
     min-height:26px;
-    font-size:0.95rem;
+    font-size:1rem;
     color:var(--text-on-navy);
-    margin:8px 0;
+    margin:10px 0;
     font-weight:600;
   }
   .message-bar .correct{color:#8fe3a4;}
   .message-bar .incorrect{color:#f0a099;}
 
-  .actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+  .actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
   .actions button{
     font-family:inherit;
-    font-size:0.9rem;
+    font-size:0.92rem;
     font-weight:700;
-    padding:10px 16px;
-    border-radius:8px;
-    border:none;
+    padding:10px 18px;
+    border-radius:2px;
+    border:1px solid rgba(0,0,0,0.15);
     cursor:pointer;
-    background:var(--accent);
+    background:var(--table-accent);
     color:#ffffff;
     transition:transform 0.08s ease, opacity 0.15s ease;
   }
   .actions button:hover:not(:disabled){transform:translateY(-2px);}
   .actions button:disabled{opacity:0.35;cursor:not-allowed;transform:none;}
-  .actions button.secondary{background:transparent;border:2px solid var(--accent-soft);color:var(--text-on-navy);}
+  .actions button.secondary{background:transparent;border:2px solid var(--table-accent-soft);color:var(--text-on-navy);}
   .actions button.deal-btn{background:var(--good);color:#fff;}
   .actions button.danger{background:var(--bad);color:#fff;}
 
@@ -285,15 +312,15 @@
     align-items:center;
     gap:8px;
     background:rgba(255,255,255,0.08);
-    border:1px solid var(--accent-soft);
-    border-radius:8px;
+    border:1px solid var(--table-accent-soft);
+    border-radius:2px;
     padding:6px 10px;
   }
   .bet-control button{
     width:26px;height:26px;
-    border-radius:6px;
+    border-radius:2px;
     border:none;
-    background:var(--accent);
+    background:var(--table-accent);
     color:#fff;
     font-weight:700;
     cursor:pointer;
@@ -307,7 +334,7 @@
     text-align:center;
     color:var(--text-on-navy);
   }
-  .hand-bet{font-size:0.7rem;color:var(--accent-soft);margin-left:6px;}
+  .hand-bet{font-size:0.7rem;color:var(--table-accent-soft);margin-left:6px;}
   .funds-notice{
     text-align:center;
     color:#f0a099;
@@ -316,10 +343,10 @@
   }
   .funds-notice button{
     margin-left:8px;
-    background:var(--accent);
+    background:var(--table-accent);
     color:#fff;
     border:none;
-    border-radius:6px;
+    border-radius:2px;
     padding:4px 10px;
     font-weight:700;
     cursor:pointer;
@@ -330,7 +357,7 @@
     margin-top:14px;flex-wrap:wrap;gap:8px;
   }
   .accuracy{font-size:0.85rem;color:var(--text-on-navy-dim);}
-  .accuracy b{color:var(--accent-soft);}
+  .accuracy b{color:var(--table-accent-soft);}
   .reset-link{
     background:none;border:none;color:var(--text-on-navy-dim);text-decoration:underline;cursor:pointer;font-size:0.78rem;
   }
@@ -344,6 +371,67 @@
     .stat{min-width:80px;padding:5px 8px;}
     .stat .value{font-size:1.1rem;}
   }
+
+  .history-backdrop{
+    position:fixed;inset:0;
+    background:rgba(13,27,50,0.25);
+    z-index:19;
+    display:none;
+  }
+  .history-backdrop.open{display:block;}
+  .history-panel{
+    position:fixed;
+    top:0; right:0;
+    width:320px;
+    height:100vh;
+    background:var(--paper);
+    border-left:2px double var(--navy);
+    box-shadow:-8px 0 20px rgba(13,27,50,0.2);
+    transform:translateX(100%);
+    transition:transform 0.3s ease;
+    z-index:20;
+    overflow-y:auto;
+    padding:16px;
+  }
+  .history-panel.open{transform:translateX(0);}
+  .history-panel-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;}
+  .history-panel-head h3{
+    margin:0;
+    font-size:0.85rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--navy);
+  }
+  .history-close{
+    background:none;border:none;
+    font-size:1.3rem;
+    line-height:1;
+    color:var(--navy);
+    cursor:pointer;
+    padding:0 4px;
+  }
+  .history-note{font-size:0.72rem;color:var(--text-on-paper-dim);margin-bottom:12px;}
+  .history-summary{
+    font-size:0.85rem;
+    color:var(--text-on-paper);
+    border-top:1px dashed rgba(18,58,112,0.3);
+    border-bottom:1px dashed rgba(18,58,112,0.3);
+    padding:8px 0;
+    margin-bottom:10px;
+  }
+  .history-summary div{margin-bottom:4px;}
+  .history-list{display:flex;flex-direction:column;gap:1px;}
+  .history-row{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    font-size:0.78rem;
+    padding:5px 4px;
+    border-bottom:1px solid var(--paper-dim);
+    color:var(--text-on-paper);
+  }
+  .history-row .h-num{color:var(--text-on-paper-dim);min-width:20px;}
+  .history-empty{font-size:0.82rem;color:var(--text-on-paper-dim);text-align:center;margin-top:20px;}
 </style>
 </head>
 <body>
@@ -353,7 +441,10 @@
       <div class="brand-main">Atlas Research Blackjack Trainer</div>
       <div class="brand-sub">Card Counting &amp; Quantitative Finance II</div>
     </div>
-    <button class="gear-btn" id="gearBtn" type="button" title="Settings" aria-label="Settings">&#9881;</button>
+    <div style="display:flex;gap:8px;">
+      <button class="gear-btn" id="historyBtn" type="button" title="Hand history &amp; performance" aria-label="Hand history">&#128202;</button>
+      <button class="gear-btn" id="gearBtn" type="button" title="Settings" aria-label="Settings">&#9881;</button>
+    </div>
     <div class="settings-panel" id="settingsPanel">
       <h3>Table settings</h3>
       <div class="setting-row">
@@ -370,6 +461,15 @@
           <button class="segbtn active" data-mode="basic" type="button">Basic Strategy</button>
           <button class="segbtn" data-mode="counting" type="button">Card Counting</button>
         </div>
+      </div>
+      <div class="setting-row">
+        <span>Table color</span>
+        <select id="themeSelect">
+          <option value="navy" selected>Navy &amp; White</option>
+          <option value="green">Classic Green &amp; Gold</option>
+          <option value="burgundy">Burgundy &amp; Gold</option>
+          <option value="charcoal">Charcoal &amp; Gold</option>
+        </select>
       </div>
 
       <h3 style="margin-top:14px;">Show / hide</h3>
@@ -398,6 +498,18 @@
 
       <button class="newshoe-btn" id="newShoeBtn" type="button">Shuffle new shoe</button>
     </div>
+  </div>
+
+  <div class="history-backdrop" id="historyBackdrop"></div>
+  <div class="history-panel" id="historyPanel">
+    <div class="history-panel-head">
+      <h3>Hand History &amp; Performance</h3>
+      <button class="history-close" id="historyCloseBtn" type="button" aria-label="Close">&times;</button>
+    </div>
+    <div class="history-note">Clears automatically when the shoe reshuffles.</div>
+    <div id="historyChartWrap"></div>
+    <div class="history-summary" id="historySummary"></div>
+    <div class="history-list" id="historyList"></div>
   </div>
 
   <div class="stats-panel" id="statsPanel" style="display:none;">
@@ -576,7 +688,9 @@
     realMode: false,
     bankroll: 10000,
     minBet: 50,
-    currentBet: 50
+    currentBet: 50,
+    handHistory: [],
+    handCounter: 0
   };
 
   function formatMoney(n){
@@ -602,7 +716,10 @@
   function startNewShoe(){
     state.shoe = buildShoe(state.numDecks);
     state.runningCount = 0;
+    state.handHistory = [];
+    state.handCounter = 0;
     updateStatsDisplay();
+    renderHistoryPanel();
   }
 
   function drawCard(faceUp){
@@ -634,6 +751,14 @@
   const el = {
     gearBtn: document.getElementById('gearBtn'),
     settingsPanel: document.getElementById('settingsPanel'),
+    themeSelect: document.getElementById('themeSelect'),
+    historyBtn: document.getElementById('historyBtn'),
+    historyPanel: document.getElementById('historyPanel'),
+    historyBackdrop: document.getElementById('historyBackdrop'),
+    historyCloseBtn: document.getElementById('historyCloseBtn'),
+    historyChartWrap: document.getElementById('historyChartWrap'),
+    historySummary: document.getElementById('historySummary'),
+    historyList: document.getElementById('historyList'),
     deckSelect: document.getElementById('deckSelect'),
     modeSeg: document.getElementById('modeSeg'),
     countingToggles: document.getElementById('countingToggles'),
@@ -801,6 +926,63 @@
     updateAccuracyDisplay();
   }
 
+  // ---------------- Hand history & performance panel ----------------
+  function logHand(hand){
+    state.handCounter++;
+    state.handHistory.push({
+      n: state.handCounter,
+      result: hand.result,
+      bet: state.realMode ? hand.bet : null,
+      bankroll: state.realMode ? state.bankroll : null,
+      accuracyPct: state.totalDecisions ? Math.round(100*state.correctDecisions/state.totalDecisions) : null
+    });
+    renderHistoryPanel();
+  }
+
+  function buildChartSVG(values, isMoney){
+    const w = 272, h = 90, pad = 6;
+    if(values.length < 2){
+      return '<div class="history-empty">Play a few hands to see a chart.</div>';
+    }
+    const min = Math.min(...values), max = Math.max(...values);
+    const range = (max - min) || 1;
+    const stepX = (w - pad*2) / (values.length - 1);
+    const pts = values.map((v,i)=>{
+      const x = pad + i*stepX;
+      const y = h - pad - ((v - min) / range) * (h - pad*2);
+      return x.toFixed(1)+','+y.toFixed(1);
+    }).join(' ');
+    const last = values[values.length-1];
+    const lineColor = (isMoney && last < values[0]) ? '#b33b30' : '#2e8b46';
+    return '<svg viewBox="0 0 '+w+' '+h+'" style="width:100%;height:90px;display:block;">'
+      + '<polyline points="'+pts+'" fill="none" stroke="'+lineColor+'" stroke-width="2"/>'
+      + '</svg>';
+  }
+
+  function renderHistoryPanel(){
+    if(state.handHistory.length === 0){
+      el.historyChartWrap.innerHTML = '<div class="history-empty">No hands played yet this shoe.</div>';
+      el.historySummary.innerHTML = '';
+      el.historyList.innerHTML = '';
+      return;
+    }
+    if(state.realMode){
+      const bankrollSeries = state.handHistory.map(h=>h.bankroll);
+      el.historyChartWrap.innerHTML = buildChartSVG(bankrollSeries, true);
+      const net = bankrollSeries[bankrollSeries.length-1] - 10000;
+      el.historySummary.innerHTML = 'Net this shoe: <b>'+(net>=0?'+':'')+formatMoney(net)+'</b> &middot; Bankroll: <b>'+formatMoney(bankrollSeries[bankrollSeries.length-1])+'</b>';
+    } else {
+      // Chart cumulative strategy accuracy (%) across the shoe as the "performance" line.
+      const accSeries = state.handHistory.map(h => h.accuracyPct).filter(v => v!=null);
+      el.historyChartWrap.innerHTML = buildChartSVG(accSeries, false);
+      el.historySummary.innerHTML = 'Strategy accuracy this shoe: <b>'+state.correctDecisions+'/'+state.totalDecisions+'</b>';
+    }
+    el.historyList.innerHTML = state.handHistory.slice().reverse().map(h=>{
+      const betPart = h.bet!=null ? (' &middot; Bet '+formatMoney(h.bet)+' &middot; '+formatMoney(h.bankroll)) : '';
+      return '<div class="history-row"><span class="h-num">#'+h.n+'</span><span>'+h.result+betPart+'</span></div>';
+    }).join('');
+  }
+
   // ---------------- Button enable/disable ----------------
   function setActionButtons({deal=false, hit=false, stand=false, double=false, split=false, surrender=false, insure=false}){
     el.btnDeal.disabled = !deal;
@@ -872,6 +1054,7 @@
       hand.done = true;
       hand.result = 'Blackjack! Win 3:2';
       if(state.realMode){ state.bankroll += hand.bet * 2.5; updateStatsDisplay(); }
+      logHand(hand);
       goToDealerOrNextHand();
       return;
     }
@@ -890,6 +1073,7 @@
       const {total} = handTotal(h.cards);
       h.result = (total===21) ? 'Push' : 'Lose';
       if(state.realMode && h.result==='Push'){ state.bankroll += h.bet; }
+      logHand(h);
     });
     if(state.realMode && state.insuranceDecision===true){
       state.bankroll += state.insuranceBet * 3; // 2:1 payout plus original stake back
@@ -940,6 +1124,7 @@
     if(total>21){
       hand.done = true;
       hand.result = 'Bust';
+      logHand(hand);
       setTimeout(advanceHand, 500);
     } else {
       setActionButtons({hit:true, stand:true, double:false, split:false, surrender:false});
@@ -964,7 +1149,7 @@
     hand.cards.push(drawCard(true));
     const {total} = handTotal(hand.cards);
     hand.done = true;
-    if(total>21) hand.result = 'Bust';
+    if(total>21){ hand.result = 'Bust'; logHand(hand); }
     renderTable();
     setTimeout(advanceHand, 500);
   }
@@ -994,6 +1179,7 @@
     hand.done = true;
     hand.result = 'Surrendered';
     if(state.realMode){ state.bankroll += hand.bet * 0.5; updateStatsDisplay(); }
+    logHand(hand);
     renderTable();
     setTimeout(advanceHand, 500);
   }
@@ -1051,7 +1237,7 @@
     state.playerHands.forEach(h=>{
       if(h.result) return; // already resolved (blackjack/bust/surrender)
       const {total} = handTotal(h.cards);
-      if(total>21){ h.result='Bust'; return; }
+      if(total>21){ h.result='Bust'; logHand(h); return; }
       if(dealerTotal>21){ h.result = h.doubled? 'Win (Double)':'Win'; }
       else if(total>dealerTotal){ h.result = h.doubled? 'Win (Double)':'Win'; }
       else if(total<dealerTotal){ h.result = h.doubled? 'Lose (Double)':'Lose'; }
@@ -1060,6 +1246,7 @@
         if(h.result==='Win' || h.result==='Win (Double)'){ state.bankroll += h.bet * 2; }
         else if(h.result==='Push'){ state.bankroll += h.bet; }
       }
+      logHand(h);
     });
     if(state.realMode) updateStatsDisplay();
     renderTable();
@@ -1107,6 +1294,23 @@
       el.settingsPanel.classList.remove('open');
     }
   });
+
+  el.themeSelect.addEventListener('change', ()=>{
+    document.body.dataset.tableTheme = el.themeSelect.value;
+  });
+
+  function openHistoryPanel(){
+    el.historyPanel.classList.add('open');
+    el.historyBackdrop.classList.add('open');
+    renderHistoryPanel();
+  }
+  function closeHistoryPanel(){
+    el.historyPanel.classList.remove('open');
+    el.historyBackdrop.classList.remove('open');
+  }
+  el.historyBtn.addEventListener('click', openHistoryPanel);
+  el.historyCloseBtn.addEventListener('click', closeHistoryPanel);
+  el.historyBackdrop.addEventListener('click', closeHistoryPanel);
 
   el.deckSelect.addEventListener('change', ()=>{
     state.numDecks = parseInt(el.deckSelect.value,10);
