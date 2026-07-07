@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulations — Card Counting &amp; Quantitative Finance</title>
+<style>
+  :root {
+    --felt: #0F3D2E;
+    --felt-dark: #0A2A20;
+    --cream: #F2EFE6;
+    --gold: #C9A227;
+    --gold-bright: #F0C94A;
+    --line: rgba(242, 239, 230, 0.14);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--felt);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,0.03), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(255,255,255,0.025), transparent 45%);
+    color: var(--cream);
+    font-family: 'Times New Roman', Times, serif;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem; }
+  .back {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: rgba(242, 239, 230, 0.6);
+    text-decoration: none;
+    margin-bottom: 2.2rem;
+  }
+  .back:hover { color: var(--gold-bright); }
+  h1 {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 700;
+    margin: 0 0 0.6rem;
+  }
+  .lede {
+    font-style: italic;
+    color: rgba(242, 239, 230, 0.7);
+    margin: 0 0 2.6rem;
+  }
+  .sim-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .sim-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 1.3rem 1.5rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: linear-gradient(160deg, rgba(255,255,255,0.03), transparent 60%);
+    transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  }
+  .sim-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    background: linear-gradient(160deg, rgba(201,162,39,0.09), transparent 65%);
+  }
+  .sim-card .filename {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.02rem;
+    color: var(--gold-bright);
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.5rem;
+  }
+  .sim-card .filename::before {
+    content: "$";
+    color: rgba(242, 239, 230, 0.4);
+  }
+  .sim-card .desc {
+    font-size: 0.95rem;
+    color: rgba(242, 239, 230, 0.72);
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../">&larr; Back</a>
+    <h1>Simulations</h1>
+    <p class="lede">Python scripts modelling house edge, EV, and bankroll risk over time.</p>
+    <div class="sim-list">
+      <a class="sim-card" href="blackjack_sim.py">
+        <span class="filename">blackjack_sim.py</span>
+        <span class="desc">House-edge and EV simulator across basic strategy, Hi-Lo, and Omega II.</span>
+      </a>
+      <a class="sim-card" href="bankroll_bot_sim.py">
+        <span class="filename">bankroll_bot_sim.py</span>
+        <span class="desc">Bankroll and risk-of-ruin simulator, built on the same rules engine.</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
