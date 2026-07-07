@@ -7,8 +7,10 @@ This is the practice tool for students in the Atlas Research - Card Counting and
 ## What it does
 
 - Practice your blackjack skills against a computer dealer (4, 6, or 8 decks)
-- Basic Strategy mode: tells you if your hit/stand/double/split/surrender call was correct
-- Card Counting mode: shows a live running count and true count
+- Basic Strategy: tells you if your hit/stand/double/split/surrender call was correct
+  - Basic Strategy mode: practice basic strategy in default mode/hard totals/soft totals/pairs
+- Card Counting: shows a live running count and true count
+  - Card Counding mode: practice card counting in Hi-Lo/KO/Hi-Opt II/Omega II
 - Wallet function: practice with a €10,000 starting bankroll
 - Play Speed: change the pace at which cards are dealt
 - Hand history and performance chart
