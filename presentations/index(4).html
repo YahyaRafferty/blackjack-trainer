@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentations — Card Counting &amp; Quantitative Finance</title>
+<style>
+  :root {
+    --felt: #0F3D2E;
+    --felt-dark: #0A2A20;
+    --cream: #F2EFE6;
+    --gold: #C9A227;
+    --gold-bright: #F0C94A;
+    --line: rgba(242, 239, 230, 0.14);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--felt);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,0.03), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(255,255,255,0.025), transparent 45%);
+    color: var(--cream);
+    font-family: 'Times New Roman', Times, serif;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem; }
+  .back {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: rgba(242, 239, 230, 0.6);
+    text-decoration: none;
+    margin-bottom: 2.2rem;
+  }
+  .back:hover { color: var(--gold-bright); }
+  h1 {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 700;
+    margin: 0 0 0.6rem;
+  }
+  .lede {
+    font-style: italic;
+    color: rgba(242, 239, 230, 0.7);
+    margin: 0 0 2.6rem;
+  }
+  .deck-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .deck-card {
+    display: flex;
+    align-items: center;
+    gap: 1.3rem;
+    padding: 1.1rem 1.4rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(160deg, rgba(255,255,255,0.03), transparent 60%);
+    transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  }
+  .deck-card:hover {
+    border-color: var(--gold);
+    transform: translateX(3px);
+    background: linear-gradient(160deg, rgba(201,162,39,0.09), transparent 65%);
+  }
+  .slide-icon {
+    flex-shrink: 0;
+    width: 58px;
+    height: 42px;
+    border-radius: 3px;
+    background: var(--cream);
+    color: var(--felt-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    font-weight: 700;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  .slide-icon::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    bottom: 7px;
+    height: 2px;
+    background: rgba(15, 61, 46, 0.15);
+  }
+  .deck-info .part {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+  .deck-info .title {
+    font-size: 1.05rem;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../">&larr; Back</a>
+    <h1>Presentations</h1>
+    <p class="lede">The three-part lecture series linking card counting to quantitative finance.</p>
+    <div class="deck-list">
+      <a class="deck-card" href="Card Counting %26 Quantitative Finance I.pptx">
+        <span class="slide-icon">I</span>
+        <span class="deck-info">
+          <span class="part">Part One</span>
+          <span class="title">Card Counting &amp; Quantitative Finance</span>
+        </span>
+      </a>
+      <a class="deck-card" href="Card Counting %26 Quantitative Finance II.pptx">
+        <span class="slide-icon">II</span>
+        <span class="deck-info">
+          <span class="part">Part Two</span>
+          <span class="title">Card Counting &amp; Quantitative Finance</span>
+        </span>
+      </a>
+      <a class="deck-card" href="Card Counting %26 Quantitative Finance III.pptx">
+        <span class="slide-icon">III</span>
+        <span class="deck-info">
+          <span class="part">Part Three</span>
+          <span class="title">Card Counting &amp; Quantitative Finance</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
