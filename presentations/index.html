@@ -3,133 +3,345 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Presentations — Card Counting &amp; Quantitative Finance</title>
+<title>Atlas Research — Blackjack Counting Course</title>
 <style>
-  :root {
-    --felt: #0F3D2E;
-    --felt-dark: #0A2A20;
-    --cream: #F2EFE6;
-    --gold: #C9A227;
-    --gold-bright: #F0C94A;
-    --line: rgba(242, 239, 230, 0.14);
+  :root{
+    --paper:#ffffff;
+    --paper-dim:#eef3fa;
+    --navy-deep:#081a33;
+    --navy:#123a70;
+    --navy-light:#2058a8;
+    --accent:#2f6fd1;
+    --accent-soft:#a9c6ee;
+    --ink:#0d1b32;
+    --text-on-paper:#0d1b32;
+    --text-on-paper-dim:#5a6b85;
   }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--felt);
-    background-image:
-      radial-gradient(circle at 20% 10%, rgba(255,255,255,0.03), transparent 40%),
-      radial-gradient(circle at 85% 80%, rgba(255,255,255,0.025), transparent 45%);
-    color: var(--cream);
-    font-family: 'Times New Roman', Times, serif;
-    min-height: 100vh;
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    min-height:100vh;
+    background:var(--paper);
+    color:var(--text-on-paper);
+    font-family:"Times New Roman", Times, serif;
+    padding:18px;
   }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 4rem 1.5rem; }
-  .back {
-    display: inline-block;
-    font-size: 0.9rem;
-    color: rgba(242, 239, 230, 0.6);
-    text-decoration: none;
-    margin-bottom: 2.2rem;
+  .wrap{max-width:820px;margin:0 auto;}
+
+  .top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:28px;
+    border-bottom:1px solid #c9a445;
+    padding-bottom:14px;
   }
-  .back:hover { color: var(--gold-bright); }
-  h1 {
-    font-size: clamp(1.9rem, 4vw, 2.6rem);
-    font-weight: 700;
-    margin: 0 0 0.6rem;
+  .brand-main{
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    color:var(--text-on-paper);
+    text-transform:uppercase;
+    font-weight:700;
   }
-  .lede {
-    font-style: italic;
-    color: rgba(242, 239, 230, 0.7);
-    margin: 0 0 2.6rem;
+  .brand-sub{
+    font-size:0.62rem;
+    letter-spacing:0.04em;
+    color:var(--text-on-paper-dim);
+    margin-top:1px;
   }
-  .deck-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
+
+  h1{
+    font-size:2rem;
+    color:#0c3d2c;
+    margin:0 0 6px 0;
   }
-  .deck-card {
-    display: flex;
-    align-items: center;
-    gap: 1.3rem;
-    padding: 1.1rem 1.4rem;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    text-decoration: none;
-    color: inherit;
-    background: linear-gradient(160deg, rgba(255,255,255,0.03), transparent 60%);
-    transition: border-color 0.18s ease, transform 0.18s ease, background 0.18s ease;
+  .intro{
+    color:var(--text-on-paper-dim);
+    font-size:1rem;
+    margin:0 0 32px 0;
+    max-width:60ch;
   }
-  .deck-card:hover {
-    border-color: var(--gold);
-    transform: translateX(3px);
-    background: linear-gradient(160deg, rgba(201,162,39,0.09), transparent 65%);
+
+  .links{
+    display:flex;
+    flex-direction:column;
   }
-  .slide-icon {
-    flex-shrink: 0;
-    width: 58px;
-    height: 42px;
-    border-radius: 3px;
-    background: var(--cream);
-    color: var(--felt-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.05rem;
-    font-weight: 700;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-    position: relative;
+  .link-card{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#fdf8ec;
+    border:1px solid #c9a445;
+    border-radius:4px;
+    padding:20px 24px;
+    text-decoration:none;
+    color:var(--ink);
+    transition:background 0.15s, border-color 0.15s;
   }
-  .slide-icon::after {
-    content: "";
-    position: absolute;
-    left: 8px;
-    right: 8px;
-    bottom: 7px;
-    height: 2px;
-    background: rgba(15, 61, 46, 0.15);
+  .link-card:not(:last-child){
+    margin-bottom:22px;
+    position:relative;
   }
-  .deck-info .part {
-    font-size: 0.7rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold-bright);
-    display: block;
-    margin-bottom: 0.15rem;
+  .link-card:not(:last-child)::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-12px;
+    height:1px;
+    background:rgba(201,164,69,0.35);
   }
-  .deck-info .title {
-    font-size: 1.05rem;
+  .link-card:hover{
+    background:#f5ecd2;
+    border-color:#0c3d2c;
+  }
+  .link-title{
+    font-weight:700;
+    font-size:1.05rem;
+    color:#0c3d2c;
+  }
+  .link-desc{
+    font-size:0.85rem;
+    color:var(--text-on-paper-dim);
+    margin-top:2px;
+  }
+  .arrow{
+    color:#c9a445;
+    font-size:1.2rem;
+    flex-shrink:0;
+    margin-left:16px;
+  }
+
+  footer{
+    margin-top:40px;
+    font-size:0.7rem;
+    color:var(--text-on-paper-dim);
+    text-align:center;
+  }
+
+  .count-strip{
+    display:flex;
+    align-items:center;
+    gap:24px;
+    background:#0c3d2c;
+    border:2px solid #c9a445;
+    border-radius:6px;
+    padding:20px 24px;
+    margin:24px 0 36px 0;
+    overflow:hidden;
+  }
+  .card-lane{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    height:64px;
+    perspective:600px;
+    border-right:1px solid rgba(201,164,69,0.4);
+    padding-right:18px;
+  }
+  .flip-card{
+    flex-shrink:0;
+    width:40px;
+    height:56px;
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .flip-card.flipped{
+    transform:rotateY(180deg);
+  }
+  .flip-face{
+    position:absolute;
+    inset:0;
+    border-radius:4px;
+    background:#fdf8ec;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:1rem;
+    font-family:"Times New Roman", Times, serif;
+    box-shadow:0 2px 5px rgba(0,0,0,0.35);
+    backface-visibility:hidden;
+  }
+  .flip-face.back{
+    transform:rotateY(180deg);
+  }
+  .flip-face.red{ color:#a3312c; }
+  .flip-face.black{ color:#0d1b32; }
+
+  .count-display{
+    flex-shrink:0;
+    text-align:center;
+    padding-left:4px;
+    min-width:76px;
+  }
+  .count-label{
+    font-size:0.58rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:#e8d9a8;
+  }
+  .count-value{
+    font-size:1.7rem;
+    font-weight:700;
+    color:#f0cfa0;
+    line-height:1.2;
+    transition:transform 0.3s ease;
+  }
+  .count-value.bump{
+    transform:scale(1.15);
   }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <a class="back" href="../">&larr; Back</a>
-    <h1>Presentations</h1>
-    <p class="lede">The three-part lecture series linking card counting to quantitative finance.</p>
-    <div class="deck-list">
-      <a class="deck-card" href="Card Counting %26 Quantitative Finance I.pptx">
-        <span class="slide-icon">I</span>
-        <span class="deck-info">
-          <span class="part">Part One</span>
-          <span class="title">Card Counting &amp; Quantitative Finance</span>
-        </span>
-      </a>
-      <a class="deck-card" href="Card Counting %26 Quantitative Finance II.pptx">
-        <span class="slide-icon">II</span>
-        <span class="deck-info">
-          <span class="part">Part Two</span>
-          <span class="title">Card Counting &amp; Quantitative Finance</span>
-        </span>
-      </a>
-      <a class="deck-card" href="Card Counting %26 Quantitative Finance III.pptx">
-        <span class="slide-icon">III</span>
-        <span class="deck-info">
-          <span class="part">Part Three</span>
-          <span class="title">Card Counting &amp; Quantitative Finance</span>
-        </span>
-      </a>
+<div class="wrap">
+
+  <div class="top-bar">
+    <div>
+      <div class="brand-main">Atlas Research</div>
+      <div class="brand-sub">Card Counting & Quantitative Finance</div>
     </div>
   </div>
+
+  <h1>Blackjack Counting Course</h1>
+
+  <div class="count-strip">
+    <div class="card-lane" id="cardLane"></div>
+    <div class="count-display">
+      <div class="count-label">Running Count</div>
+      <div class="count-value" id="countValue">0</div>
+    </div>
+  </div>
+
+  <div class="links">
+    <a class="link-card" href="practice/index.html">
+      <div>
+        <div class="link-title">Practice Trainer</div>
+        <div class="link-desc">Interactive basic strategy and card counting practice</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a class="link-card" href="presentations/">
+      <div>
+        <div class="link-title">Presentations</div>
+        <div class="link-desc">Lecture slides on card counting and quantitative finance</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a class="link-card" href="sheets/">
+      <div>
+        <div class="link-title">Reference Sheets</div>
+        <div class="link-desc">Basic strategy, table rules, and session log sheets</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+
+    <a class="link-card" href="simulations/">
+      <div>
+        <div class="link-title">Simulations</div>
+        <div class="link-desc">Python scripts for house edge, EV, and bankroll risk</div>
+      </div>
+      <div class="arrow">→</div>
+    </a>
+  </div>
+
+  <footer>Atlas Research</footer>
+</div>
+
+<script>
+(function(){
+  const SUITS = [{s:'♠',c:'black'},{s:'♣',c:'black'},{s:'♥',c:'red'},{s:'♦',c:'red'}];
+  const RANKS = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+  const HILO = {A:-1,'2':1,'3':1,'4':1,'5':1,'6':1,'7':0,'8':0,'9':0,'10':-1,J:-1,Q:-1,K:-1};
+
+  const lane = document.getElementById('cardLane');
+  const countEl = document.getElementById('countValue');
+
+  const NUM_CARDS = 9;
+  let shoe = [];
+  let runningCount = 0;
+
+  function buildShoe(numDecks){
+    const cards = [];
+    for(let d=0; d<numDecks; d++){
+      for(const rank of RANKS){
+        for(const suit of SUITS){
+          cards.push({rank, suit: suit.s, color: suit.c});
+        }
+      }
+    }
+    for(let i=cards.length-1;i>0;i--){
+      const j = Math.floor(Math.random()*(i+1));
+      [cards[i],cards[j]] = [cards[j],cards[i]];
+    }
+    return cards;
+  }
+
+  function nextCard(){
+    if(shoe.length === 0){
+      shoe = buildShoe(6);
+      runningCount = 0;
+    }
+    return shoe.pop();
+  }
+
+  // Build the fixed row of flip-cards, each holding a front and back face.
+  const slots = [];
+  for(let i=0;i<NUM_CARDS;i++){
+    const flip = document.createElement('div');
+    flip.className = 'flip-card';
+
+    const front = document.createElement('div');
+    front.className = 'flip-face front';
+    const back = document.createElement('div');
+    back.className = 'flip-face back';
+
+    flip.appendChild(front);
+    flip.appendChild(back);
+    lane.appendChild(flip);
+
+    const card = nextCard();
+    front.textContent = card.rank + card.suit;
+    front.classList.add(card.color);
+    runningCount += HILO[card.rank];
+
+    slots.push({flip, front, back, showingFront:true});
+  }
+  countEl.textContent = (runningCount > 0 ? '+' : '') + runningCount;
+
+  function bumpCount(){
+    countEl.classList.remove('bump');
+    void countEl.offsetWidth;
+    countEl.classList.add('bump');
+    setTimeout(() => countEl.classList.remove('bump'), 300);
+  }
+
+  function flipSlot(slot){
+    const card = nextCard();
+    const hiddenFace = slot.showingFront ? slot.back : slot.front;
+    hiddenFace.textContent = card.rank + card.suit;
+    hiddenFace.classList.remove('red','black');
+    hiddenFace.classList.add(card.color);
+
+    slot.flip.classList.toggle('flipped');
+    slot.showingFront = !slot.showingFront;
+
+    runningCount += HILO[card.rank];
+    countEl.textContent = (runningCount > 0 ? '+' : '') + runningCount;
+    bumpCount();
+  }
+
+  let i = 0;
+  setInterval(() => {
+    flipSlot(slots[i % slots.length]);
+    i++;
+  }, 700);
+})();
+</script>
 </body>
 </html>
