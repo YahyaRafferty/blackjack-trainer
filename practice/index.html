@@ -454,7 +454,7 @@
 </head>
 <body>
 <div class="wrap">
-  <a class="back-link" href="../">&larr; Back</a>
+  <a class="back-link" href="../">&larr; Back to ATLAS Research</a>
   <div class="top-bar">
     <div>
       <div class="brand-main">Atlas Research Blackjack Trainer</div>
@@ -761,7 +761,6 @@
     playerHands: [],
     currentHandIndex: 0,
     stage: 'idle', // idle | insurance | playerTurn | dealerTurn | roundEnd
-    splitUsed: false,
     insuranceDecision: null,
     insuranceBet: 0,
     correctDecisions: 0,
@@ -1178,7 +1177,6 @@
     const startBet = state.realMode ? state.currentBet : 0;
     state.playerHands = [{cards:[], done:false, hasActed:false, fromSplit:false, doubled:false, result:null, bet:startBet}];
     state.currentHandIndex = 0;
-    state.splitUsed = false;
     state.insuranceDecision = null;
     state.insuranceBet = 0;
     state.dealerHoleHidden = true;
@@ -1262,7 +1260,7 @@
       return;
     }
     const canDouble = hand.cards.length===2 && !hand.hasActed;
-    const canSplit = canDouble && !state.splitUsed && normalizeRank(hand.cards[0].rank)===normalizeRank(hand.cards[1].rank);
+    const canSplit = canDouble && state.playerHands.length<4 && normalizeRank(hand.cards[0].rank)===normalizeRank(hand.cards[1].rank);
     const canSurrender = canDouble && !hand.fromSplit;
     // Doubling/splitting both require matching the current stake; in real mode,
     // don't offer them unless the bankroll can actually cover that extra bet
@@ -1275,7 +1273,7 @@
   function judgeAndRecord(action, hand){
     const dealerUp = state.dealerCards[0].rank;
     const canDouble = hand.cards.length===2 && !hand.hasActed;
-    const canSplit = canDouble && !state.splitUsed && normalizeRank(hand.cards[0].rank)===normalizeRank(hand.cards[1].rank);
+    const canSplit = canDouble && state.playerHands.length<4 && normalizeRank(hand.cards[0].rank)===normalizeRank(hand.cards[1].rank);
     const canSurrender = canDouble && !hand.fromSplit;
     const correct = correctAction(hand.cards, dealerUp, canDouble, canSplit, canSurrender);
     const isRight = (action===correct) || (action==='D' && correct==='Ds') || (action==='S' && correct==='Ds');
@@ -1334,7 +1332,6 @@
   function doSplit(){
     const hand = state.playerHands[state.currentHandIndex];
     judgeAndRecord('P', hand);
-    state.splitUsed = true;
     const c1 = hand.cards[0], c2 = hand.cards[1];
     const isAceSplit = normalizeRank(c1.rank)==='A';
     const hand1 = {cards:[c1], done:false, hasActed:false, fromSplit:true, doubled:false, result:null, bet:hand.bet};
