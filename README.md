@@ -30,5 +30,5 @@ Available as `.docx` and `.pdf`:
 - `blackjack_sim.py` — house-edge and EV simulator (basic strategy, Hi-Lo, Omega II)
 - `bankroll_bot_sim.py` — bankroll and risk-of-ruin simulator
 
-- ## Website
-- https://yahyarafferty.github.io/blackjack-counting-course/
+## Website
+https://yahyarafferty.github.io/blackjack-counting-course/
